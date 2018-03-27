@@ -9,7 +9,7 @@
     crossorigin="anonymous">
   <link rel="stylesheet" href="scheduler-style.css" type="text/css">
   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-  <title>Document</title>
+  <title>Train Scheduler</title>
 </head>
 
 <body>
@@ -99,79 +99,7 @@
     <script src="http://code.jquery.com/jquery-3.3.1.slim.js" integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
       crossorigin="anonymous"></script>
     <script src="moment.js"></script>
-    <script>
-      var config = {
-        apiKey: "AIzaSyDVCJJXeaRGHfIB5NjHXc2ErOLmUmloDLw",
-        authDomain: "first-firebase-pro-b5ceb.firebaseapp.com",
-        databaseURL: "https://first-firebase-pro-b5ceb.firebaseio.com",
-        projectId: "first-firebase-pro-b5ceb",
-        storageBucket: "first-firebase-pro-b5ceb.appspot.com",
-        messagingSenderId: "233254861530"
-      };
-
-      firebase.initializeApp(config);
-
-      // Create a variable to reference the database.
-      var database = firebase.database();
-
-      let name = "";
-      let destination = "";
-      let firstTrainTime = "";
-      let frequency = 0;
-
-      $("#add-train").on('click', function (event) {
-        event.preventDefault();
-
-        name = $("#name-input").val().trim();
-        destination = $("#destination-input").val().trim();
-        firstTrainTime = $("#start-time-input").val().trim();
-        frequency = $("#frequency-input").val().trim();
-
-        database.ref().push({
-          name: name,
-          destination: destination,
-          firstTrainTime: firstTrainTime,
-          frequency: frequency,
-          dateAdded: firebase.database.ServerValue.TIMESTAMP
-        });
-
-      });
-
-      database.ref().orderByChild("name").on("child_added", function (childSnapshot) {
-
-        console.log(childSnapshot);
-
-        let nRow = $("<tr>");
-        let ntd1 = $("<td>");
-        let ntd2 = $("<td>");
-        let ntd3 = $("<td>");
-        let ntd4 = $("<td>");
-        let ntd5 = $("<td>");
-
-        let nextArrival = moment(childSnapshot.val().frequency).format("HH:mm");
-        console.log(typeof nextArrival);
-        let minutesAway = moment().diff(moment(childSnapshot.val().startDate, "DDMMYY"), 'months');
-
-        ntd1.text(childSnapshot.val().name);
-        ntd2.text(childSnapshot.val().destination);
-        ntd3.text(childSnapshot.val().frequency);
-        ntd4.text(nextArrival);
-        ntd5.text(minutesAway);
-
-        nRow.append(ntd1);
-        nRow.append(ntd2);
-        nRow.append(ntd3);
-        nRow.append(ntd4);
-        nRow.append(ntd5);
-
-        $("tbody").append(nRow);
-
-      }, function (errorObject) {
-        console.log("Errors handled: " + errorObject.code);
-      });
-
-
-    </script>
+    <script src="app.js"></script>
 </body>
 
 </html>
