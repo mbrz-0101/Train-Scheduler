@@ -1,0 +1,31 @@
+.container-fluid {
+  width: 75% !important;
+}
+.container {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 30px 0;
+  padding: 0;
+}
+.row {
+  width: 100%;
+  margin: 0;
+}
+.card-row {
+  background-color: rgb(0, 0, 189);
+  color: white;
+  border-radius: 5px 5px 0 0;
+}
+#jumbotron {
+  background-color: black;
+  color: white;
+  border-radius: 0 0 5px 5px;
+  padding: 40px;
+}
+form {
+  padding-top: 10px;
+}
+p {
+  padding-top: 10px;
+  font-weight: 500;
+}
